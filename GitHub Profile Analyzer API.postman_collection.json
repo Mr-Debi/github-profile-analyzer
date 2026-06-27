@@ -1,0 +1,32 @@
+{
+  "info": {
+    "_postman_id": "fc70e55f-d8d6-483a-9027-5e4be8d7a68a",
+    "name": "GitHub Profile Analyzer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56218188",
+    "_collection_link": "https://go.postman.co/collection/56218188-fc70e55f-d8d6-483a-9027-5e4be8d7a68a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "http://localhost:5000/api/profile/Mr-Debi",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/profile/Mr-Debi",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "profile",
+            "Mr-Debi"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

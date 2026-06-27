@@ -53,7 +53,7 @@ github-profile-analyzer/
 ├── app.js
 ├── package.json
 ├── README.md
-└── database.sql
+└── github_analyzer.sql 
 ```
 
 ---
