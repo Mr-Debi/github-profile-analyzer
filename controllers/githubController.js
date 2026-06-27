@@ -10,37 +10,34 @@ const {
 // Fetch GitHub profile and save to MySQL
 const analyzeProfile = async (req, res) => {
     try {
+
+        console.log("Analyze endpoint called");
+
         const username = req.params.username;
 
         const profile = await fetchGitHubProfile(username);
 
+        console.log("GitHub profile fetched");
+
         await saveProfile(profile);
 
-        res.status(200).json({
+        console.log("Profile saved to DB");
+
+        res.json({
             success: true,
             message: "Profile analyzed and saved successfully",
-            data: {
-                username: profile.login,
-                name: profile.name,
-                bio: profile.bio,
-                company: profile.company,
-                location: profile.location,
-                public_repos: profile.public_repos,
-                followers: profile.followers,
-                following: profile.following,
-                public_gists: profile.public_gists,
-                profile_url: profile.html_url,
-                avatar_url: profile.avatar_url,
-                github_created_at: profile.created_at,
-                github_updated_at: profile.updated_at
-            }
+            data: profile
         });
 
     } catch (error) {
+
+        console.error(error);
+
         res.status(500).json({
             success: false,
             message: error.message
         });
+
     }
 };
 
