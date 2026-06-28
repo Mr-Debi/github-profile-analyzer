@@ -1,35 +1,49 @@
-# GitHub Profile Analyzer API
+# 🚀 GitHub Profile Analyzer API
 
-A RESTful API built with **Node.js**, **Express.js**, and **MySQL** that fetches public GitHub user information using the GitHub Public API, stores useful profile insights in a MySQL database, and provides endpoints to manage and retrieve the analyzed profiles.
+A RESTful backend service built with **Node.js**, **Express.js**, and **MySQL** that analyzes GitHub user profiles using the GitHub Public API and stores useful insights in a MySQL database.
+
+## 🌐 Live Demo
+
+**Live API:**  
+https://github-profile-analyzer-jxkd.onrender.com/api/analyze/Mr-Debi
+
+## 📂 GitHub Repository
+
+https://github.com/Mr-Debi/github-profile-analyzer
 
 ---
 
-## Features
+# 📌 Features
 
-- Fetch GitHub user profile by username
+- Analyze any public GitHub profile
+- Fetch profile data using GitHub Public API
 - Store profile insights in MySQL
 - Update existing profile if already analyzed
-- Retrieve all analyzed profiles
-- Retrieve a single analyzed profile
+- Fetch all analyzed profiles
+- Fetch a single profile by username
 - Delete a stored profile
-- RESTful API design
-- Environment variable support using dotenv
+- RESTful API architecture
+- Cloud deployment using Render
+- MySQL database hosted on Railway
 
 ---
 
-## Tech Stack
+# 🛠 Tech Stack
 
 - Node.js
 - Express.js
 - MySQL
+- MySQL2
 - Axios
-- mysql2
-- dotenv
+- Dotenv
 - CORS
+- GitHub REST API
+- Railway MySQL
+- Render
 
 ---
 
-## Project Structure
+# 📁 Project Structure
 
 ```
 github-profile-analyzer/
@@ -49,103 +63,80 @@ github-profile-analyzer/
 ├── services/
 │   └── githubService.js
 │
-├── .env
+├── .env.example
+├── .gitignore
 ├── app.js
 ├── package.json
 ├── README.md
-└── github_analyzer.sql 
+├── github_analyzer.sql
+└── GitHub Profile Analyzer API.postman_collection.json
 ```
 
 ---
 
-## Installation
+# ⚙️ Installation
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/github-profile-analyzer.git
-```
-
-### 2. Navigate to the project folder
+## 1. Clone the Repository
 
 ```bash
+git clone https://github.com/Mr-Debi/github-profile-analyzer.git
+
 cd github-profile-analyzer
 ```
 
-### 3. Install dependencies
+---
+
+## 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 4. Configure Environment Variables
+---
+
+## 3. Create Environment File
 
 Create a `.env` file in the project root.
 
-```
+```env
 PORT=5000
 
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_mysql_password
-DB_NAME=github_analyzer
+DB_HOST=YOUR_DATABASE_HOST
+DB_PORT=3306
+DB_USER=YOUR_DATABASE_USER
+DB_PASSWORD=YOUR_DATABASE_PASSWORD
+DB_NAME=YOUR_DATABASE_NAME
 ```
 
 ---
 
-## Database Setup
+## 4. Create Database
 
-Create the database:
+Import the provided SQL file:
 
-```sql
-CREATE DATABASE github_analyzer;
+```
+github_analyzer.sql
 ```
 
-Use the database:
-
-```sql
-USE github_analyzer;
-```
-
-Create the table:
-
-```sql
-CREATE TABLE github_profiles (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100) UNIQUE,
-    name VARCHAR(255),
-    bio TEXT,
-    company VARCHAR(255),
-    location VARCHAR(255),
-    public_repos INT,
-    followers INT,
-    following INT,
-    public_gists INT,
-    avatar_url TEXT,
-    profile_url TEXT,
-    created_at_github DATETIME,
-    updated_at_github DATETIME,
-    analyzed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
+or execute the SQL manually.
 
 ---
 
-## Run the Application
+## 5. Start the Server
 
-Development mode
+Development
 
 ```bash
 npm run dev
 ```
 
-Production mode
+Production
 
 ```bash
 npm start
 ```
 
-Server runs on:
+Server runs on
 
 ```
 http://localhost:5000
@@ -153,11 +144,11 @@ http://localhost:5000
 
 ---
 
-# API Endpoints
+# 📡 API Endpoints
 
-## Check API Status
+## Health Check
 
-**GET**
+### GET
 
 ```
 /api
@@ -176,9 +167,7 @@ Response
 
 ## Analyze GitHub Profile
 
-Fetches profile from GitHub and stores it in MySQL.
-
-**GET**
+### GET
 
 ```
 /api/analyze/:username
@@ -192,9 +181,9 @@ GET /api/analyze/octocat
 
 ---
 
-## Get All Stored Profiles
+## Get All Profiles
 
-**GET**
+### GET
 
 ```
 /api/profiles
@@ -202,9 +191,9 @@ GET /api/analyze/octocat
 
 ---
 
-## Get Single Stored Profile
+## Get Single Profile
 
-**GET**
+### GET
 
 ```
 /api/profile/:username
@@ -213,14 +202,14 @@ GET /api/analyze/octocat
 Example
 
 ```
-GET /api/profile/octocat
+/api/profile/octocat
 ```
 
 ---
 
 ## Delete Profile
 
-**DELETE**
+### DELETE
 
 ```
 /api/profile/:username
@@ -234,47 +223,100 @@ DELETE /api/profile/octocat
 
 ---
 
-## GitHub API Used
+# 🗄 Database Schema
+
+Table Name
 
 ```
-https://api.github.com/users/{username}
+github_profiles
+```
+
+Stores
+
+- Username
+- Name
+- Bio
+- Company
+- Location
+- Public Repositories
+- Followers
+- Following
+- Public Gists
+- Avatar URL
+- GitHub Profile URL
+- GitHub Account Created Date
+- GitHub Account Updated Date
+- Analysis Timestamp
+
+---
+
+# 📮 Postman Collection
+
+The Postman collection is included in the repository.
+
+```
+GitHub Profile Analyzer API.postman_collection.json
 ```
 
 ---
 
-## Testing
+# 🚀 Deployment
 
-The API can be tested using:
+Backend
 
-- Postman
-- Thunder Client
-- cURL
+- Render
 
----
+Database
 
-## Dependencies
-
-```
-express
-axios
-mysql2
-dotenv
-cors
-nodemon
-```
+- Railway MySQL
 
 ---
 
-## Future Improvements
+# 📷 Sample API URLs
+
+Health Check Example
+
+```
+GET https://github-profile-analyzer-jxkd.onrender.com/api
+```
+
+Analyze Profile
+
+```
+GET https://github-profile-analyzer-jxkd.onrender.com/api/analyze/octocat
+```
+
+Get All Profiles
+
+```
+GET https://github-profile-analyzer-jxkd.onrender.com/api/profiles
+```
+
+Get Profile
+
+```
+GET https://github-profile-analyzer-jxkd.onrender.com/api/profile/octocat
+```
+
+Delete Profile
+
+```
+DELETE https://github-profile-analyzer-jxkd.onrender.com/api/profile/octocat
+```
+
+---
+
+# 💡 Future Improvements
 
 - Authentication using JWT
+- Swagger API Documentation
 - Pagination
-- Search functionality
-- API rate limiting
-- Swagger API documentation
-- Docker support
-- Logging with Winston/Morgan
-- Unit testing
+- Search and Filtering
+- Request Validation
+- Rate Limiting
+- Unit Testing (Jest)
+- Docker Support
+- GitHub API Caching
 
 ---
 
